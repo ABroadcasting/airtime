@@ -378,19 +378,9 @@ if [ "$apache" = "t" ]; then
     loud "\n-----------------------------------------------------"
     loud "                * Configuring Apache *                "
     loud "-----------------------------------------------------"
-
-    set +e
-    apache2 -v | grep "2\.4" > /dev/null
-    apacheversion=$?
     set -e
-
-    if [ "$apacheversion" != "1" ]; then
         airtimeconfigfile="airtime.conf"
         oldconfigfile="airtime-vhost.conf"
-    else
-        airtimeconfigfile="airtime"
-        oldconfigfile="airtime-vhost"
-    fi
 
     # If we're upgrading (installing over an existing Airtime install) and we've been told to
     # install apache, we should overwrite any existing configuration. If we don't do this, doing
@@ -398,12 +388,8 @@ if [ "$apache" = "t" ]; then
     # will fail
     if [ "$upgrade" = "t" -o ! -f /etc/apache2/sites-available/${airtimeconfigfile} ]; then
         verbose "\n * Creating Apache config for Airtime..."
-        
-        if [ "$apacheversion" != "1" ]; then
-            sed -e "s@WEB_ROOT@${web_root}@g" ${SCRIPT_DIR}/installer/apache/airtime-vhost-2.4 > /etc/apache2/sites-available/${airtimeconfigfile}
-        else
-            sed -e "s@WEB_ROOT@${web_root}@g" ${SCRIPT_DIR}/installer/apache/airtime-vhost > /etc/apache2/sites-available/${airtimeconfigfile}
-        fi
+        sed -e "s@WEB_ROOT@${web_root}@g" ${SCRIPT_DIR}/installer/apache/airtime-vhost > /etc/apache2/sites-available/${airtimeconfigfile}
+
         loudCmd "a2dissite 000-default"
         # If Airtime was previously installed with apt, the vhost file name is different,
         # so we need to specifically disable it.
@@ -503,15 +489,15 @@ chmod -R a+x /var/tmp/airtime
 chown -R ${web_user}:${web_user} /var/tmp/airtime/
 
 # PHP Config File for Apache
-if [ ! -f "/etc/php5/apache2/conf.d/airtime.ini" ]; then
+if [ ! -f "/etc/php/7.0/apache2/conf.d/airtime.ini" ]; then
     verbose "\n * Creating Airtime PHP config for Apache..."
-    cp ${SCRIPT_DIR}/installer/php/airtime.ini /etc/php5/apache2/conf.d/airtime.ini
+    cp ${SCRIPT_DIR}/installer/php/airtime.ini /etc/php/7.0/apache2/conf.d/airtime.ini
 else
     verbose "\nAirtime PHP config for Apache already exists, skipping"
 fi
 
 # Enable Apache modules
-loudCmd "a2enmod rewrite php5"
+loudCmd "a2enmod rewrite php7.0"
 
 loud "\n-----------------------------------------------------"
 loud "              * Configuring PostgreSQL *              "
