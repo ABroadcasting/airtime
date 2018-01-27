@@ -1,17 +1,18 @@
 apache2
-libapache2-mod-php5
-php5
+libapache2-mod-php7.0
+php7.0
 libzend-framework-php
 php-pear
-php5-gd
+php7.0-gd
 
 lsb-release
+upstart
 
 rabbitmq-server
 
 postgresql
 postgresql-client
-php5-pgsql
+php7.0-pgsql
 
 python
 python-virtualenv
@@ -27,7 +28,7 @@ libsamplerate0
 
 patch
 
-php5-curl
+php7.0-curl
 mpg123
 
 icecast2
@@ -42,7 +43,6 @@ flac
 vorbis-tools
 pwgen
 libfaad2
-php-apc
 
 lame
 
