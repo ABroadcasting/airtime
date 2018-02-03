@@ -7,7 +7,7 @@
    php_value request_order "GPC"
    php_value session.gc_probability 0
    php_value session.auto_start 0
-
+   
    AddOutputFilterByType DEFLATE text/plain
    AddOutputFilterByType DEFLATE text/html
    AddOutputFilterByType DEFLATE text/xml
@@ -19,22 +19,22 @@
    AddOutputFilterByType DEFLATE application/x-javascript
    AddOutputFilterByType DEFLATE application/json
 
-
   <Directory WEB_ROOT>
-
       RewriteEngine On
       RewriteCond %{REQUEST_FILENAME} -s [OR]
       RewriteCond %{REQUEST_FILENAME} -l [OR]
       RewriteCond %{REQUEST_FILENAME} -d
       RewriteRule ^.*$ - [NC,L]
       RewriteRule ^.*$ index.php [NC,L]
-      Order allow,deny
+
+      DirectoryIndex index.php
+      AllowOverride all
       <IfVersion < 2.4>
+          Order allow,deny
           Allow from all
       </IfVersion>
       <IfVersion >= 2.4>
           Require all granted
       </IfVersion>
-
   </Directory>
 </VirtualHost>
