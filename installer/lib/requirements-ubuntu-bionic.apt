@@ -1,9 +1,9 @@
 apache2
-libapache2-mod-php7.0
-php7.0
+libapache2-mod-php7.2
+php7.2
 libzend-framework-php
 php-pear
-php7.0-gd
+php7.2-gd
 
 lsb-release
 
@@ -11,7 +11,7 @@ rabbitmq-server
 
 postgresql
 postgresql-client
-php7.0-pgsql
+php7.2-pgsql
 
 python
 python-virtualenv
@@ -27,7 +27,7 @@ libsamplerate0
 
 patch
 
-php7.0-curl
+php7.2-curl
 mpg123
 
 icecast2
