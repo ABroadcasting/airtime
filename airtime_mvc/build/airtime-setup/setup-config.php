@@ -3,8 +3,8 @@
 
 <html>
     <head>
-        <script type="text/javascript" src="js/libs/jquery-1.8.3.min.js"></script>
-        <script type="text/javascript" src="js/libs/jquery-ui-1.8.24.min.js"></script>
+        <script type="text/javascript" src="js/libs/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="js/libs/jquery-ui-1.12.1.custom.min.js"></script>
         <script type="text/javascript" src="js/setup/setup-config.js"></script>
 
         <link rel="stylesheet" type="text/css" href="css/bootstrap-3.3.1.min.css" />

@@ -113,8 +113,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         $baseUrl = Application_Common_OsPath::getBaseDir();
 
-        $view->headScript()->appendFile($baseUrl.'js/libs/jquery-1.8.3.min.js?'.$CC_CONFIG['airtime_version'],'text/javascript');
-        $view->headScript()->appendFile($baseUrl.'js/libs/jquery-ui-1.8.24.min.js?'.$CC_CONFIG['airtime_version'],'text/javascript');
+        $view->headScript()->appendFile($baseUrl.'js/libs/jquery-3.3.1.min.js?'.$CC_CONFIG['airtime_version'],'text/javascript');
+        $view->headScript()->appendFile($baseUrl.'js/libs/jquery-ui-1.12.1.min.js?'.$CC_CONFIG['airtime_version'],'text/javascript');
         $view->headScript()->appendFile($baseUrl.'js/bootstrap/bootstrap.js?'.$CC_CONFIG['airtime_version'],'text/javascript');
 
         $view->headScript()->appendFile($baseUrl.'js/libs/underscore-min.js?'.$CC_CONFIG['airtime_version'],'text/javascript');
