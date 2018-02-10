@@ -7,31 +7,27 @@
  * http://opensource.org/licenses/MIT
  *
  * Author: Mark J Panaghiston
- * Version: 1.1.4
- * Date: 1st September 2014
+ * Version: 1.1.6
+ * Date: 27th November 2014
  *
  * For Popcorn Version: 1.3
- * For jPlayer Version: 2.7.0
+ * For jPlayer Version: 2.9.0
  * Requires: jQuery 1.7+
  * Note: jQuery dependancy cannot be removed since jPlayer 2 is a jQuery plugin. Use of jQuery will be kept to a minimum.
  */
 
-/* Code verified using http://www.jshint.com/ */
-/*jshint asi:false, bitwise:false, boss:false, browser:true, curly:false, debug:false, eqeqeq:true, eqnull:false, evil:false, forin:false, immed:false, jquery:true, laxbreak:false, newcap:true, noarg:true, noempty:true, nonew:true, onevar:false, passfail:false, plusplus:false, regexp:false, undef:true, sub:false, strict:false, white:false, smarttabs:true */
-/*global Popcorn:false, console:false */
-
 (function(Popcorn) {
 
-	var JQUERY_SCRIPT = '//code.jquery.com/jquery-1.11.1.min.js', // Used if jQuery not already present.
-	JPLAYER_SCRIPT = '//www.jplayer.org/2.7.0/js/jquery.jplayer.min.js', // Used if jPlayer not already present.
-	JPLAYER_SWFPATH = '//www.jplayer.org/2.7.0/js/Jplayer.swf', // Used if not specified in jPlayer options via SRC Object.
+	var JQUERY_SCRIPT = '//code.jquery.com/jquery-3.3.1.min.js', // Used if jQuery not already present.
+	JPLAYER_SCRIPT = '//code.jplayer.org/2.9.0/jplayer/jquery.jplayer.min.js', // Used if jPlayer not already present.
+	JPLAYER_SWFPATH = '//code.jplayer.org/2.9.0/jplayer/jquery.jplayer.swf', // Used if not specified in jPlayer options via SRC Object.
 	SOLUTION = 'html,flash', // The default solution option.
 	DEBUG = false, // Decided to leave the debugging option and console output in for the time being. Overhead is trivial.
 	jQueryDownloading = false, // Flag to stop multiple instances from each pulling in jQuery, thus corrupting it.
 	jPlayerDownloading = false, // Flag to stop multiple instances from each pulling in jPlayer, thus corrupting it.
 	format = { // Duplicate of jPlayer 2.5.0 object, to avoid always requiring jQuery and jPlayer to be loaded before performing the _canPlayType() test.
 		mp3: {
-			codec: 'audio/mpeg;',
+			codec: 'audio/mpeg',
 			flashCanPlay: true,
 			media: 'audio'
 		},
