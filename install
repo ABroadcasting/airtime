@@ -295,6 +295,13 @@ if [ "$ignore_dependencies" = "f" ]; then
         code=`lsb_release -cs`
     fi
 
+    case $code in
+    bionic) phpv="7.2";;
+    buster|stretch|xenial) phpv="7.0";;
+    jessie|trusty) phpv="5";;
+    esac
+
+
     loud "\n-----------------------------------------------------"
     loud "         * Installing External Dependencies *        "
     loud "-----------------------------------------------------"
@@ -488,15 +495,15 @@ chmod -R a+x /var/tmp/airtime
 chown -R ${web_user}:${web_user} /var/tmp/airtime/
 
 # PHP Config File for Apache
-if [ ! -f "/etc/php/7.2/apache2/conf.d/airtime.ini" ]; then
+if [ ! -f "/etc/php/${phpv}/apache2/conf.d/airtime.ini" ]; then
     verbose "\n * Creating Airtime PHP config for Apache..."
-    cp ${SCRIPT_DIR}/installer/php/airtime.ini /etc/php/7.2/apache2/conf.d/airtime.ini
+    cp ${SCRIPT_DIR}/installer/php/airtime.ini /etc/php/${phpv}/apache2/conf.d/airtime.ini
 else
     verbose "\nAirtime PHP config for Apache already exists, skipping"
 fi
 
 # Enable Apache modules
-loudCmd "a2enmod rewrite php7.2"
+loudCmd "a2enmod rewrite php${phpv}"
 
 loud "\n-----------------------------------------------------"
 loud "              * Configuring PostgreSQL *              "
