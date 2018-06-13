@@ -290,7 +290,7 @@ if [ "$ignore_dependencies" = "f" ]; then
     set +e
     loudCmd "apt-get update"
     if [ -z "${dist}" ]; then
-        loudCmd "apt-get -y --force-yes install lsb-release"
+        loudCmd "apt-get -y --assume-yes install lsb-release"
         dist=`lsb_release -ds | awk '{print tolower($1);}'`
         code=`lsb_release -cs`
     fi
@@ -308,9 +308,9 @@ if [ "$ignore_dependencies" = "f" ]; then
 
     verbose "\n * Reading requirements-${dist,,}-${code,,}.apt..."
     if [ -f ${SCRIPT_DIR}/installer/lib/requirements-${dist,,}-${code,,}.apt ]; then
-        loudCmd "DEBIAN_FRONTEND=noninteractive apt-get -y -m --force-yes install $(grep -vE '^\s*#' ${SCRIPT_DIR}/installer/lib/requirements-${dist,,}-${code,,}.apt | tr '\n' ' ')"
+        loudCmd "DEBIAN_FRONTEND=noninteractive apt-get -y -m --assume-yes install $(grep -vE '^\s*#' ${SCRIPT_DIR}/installer/lib/requirements-${dist,,}-${code,,}.apt | tr '\n' ' ')"
     else
-        loudCmd "DEBIAN_FRONTEND=noninteractive apt-get -y -m --force-yes install $(grep -vE '^\s*#' ${SCRIPT_DIR}/installer/lib/requirements-ubuntu-trusty.apt | tr '\n' ' ')"
+        loudCmd "DEBIAN_FRONTEND=noninteractive apt-get -y -m --assume-yes install $(grep -vE '^\s*#' ${SCRIPT_DIR}/installer/lib/requirements-ubuntu-trusty.apt | tr '\n' ' ')"
     fi
     set -e
 else
